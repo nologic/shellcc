@@ -19,6 +19,12 @@ shelltest: shelltest.c
 	python extractshell.py -o $@ -s $@.b
 	hexdump -C $@.b
 
+shelltest64: shelltest.c
+	$(GCC) -o $@ $^
+	otool -t -v $@
+	python extractshell.py -o $@ -s $@.b
+	hexdump -C $@.b
+
 connectout: connectout.c
 	$(GCC) -o $@ $^
 	otool -t -v $@

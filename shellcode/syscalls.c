@@ -23,6 +23,7 @@
 #define COPY_ARG7(dest, src)   COPY_ARG(dest, src, "rcx")
 #define COPY_ARG8(dest, src)   COPY_ARG(dest, src, "r11")
 
+// .bytes are jnb +3
 #define SYS_CALL_ASM \
 		"syscall;\n"  \
 		".byte 0x73; .byte 0x03;\n" \

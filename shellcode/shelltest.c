@@ -3,10 +3,6 @@
 #include <unistd.h>
 
 int main() {
-	uint64_t sock;
-
-	PRE_CONDITION("x0", sock);
-
 	char buf[4096];
 	char* name = "hello";
 

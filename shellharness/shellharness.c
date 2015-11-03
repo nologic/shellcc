@@ -5,10 +5,18 @@
 #include <signal.h>
 #include <stdlib.h>
 
+#ifdef __arm64
+#define ASM_BREAKPOINT __asm__("BRK #3");
+#elif __x86_64
+#define ASM_BREAKPOINT __asm__("int3");
+#elif
+#error "Unsupported architecture"
+#endif
+
 typedef void (*shell)();
 
 static void exec_buffer_bp(void* buf) {
-    __asm__("BRK #3");
+    ASM_BREAKPOINT
     
     ((shell)buf)();
 }

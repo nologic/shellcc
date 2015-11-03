@@ -1,3 +1,13 @@
+#ifdef __x86_64
+    #define POSIX_CALL_NUM(num) ( (0x02 << 24) | (num) )
+#elif __arm64
+    #define POSIX_CALL_NUM(num) (num)
+#else
+    #error "Unsupported architecture"
+#endif
+
+
+
 #include <sys/appleapiopts.h>
 #include <sys/param.h>
 #include <sys/types.h>
