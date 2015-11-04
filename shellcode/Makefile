@@ -37,5 +37,11 @@ connectout64: connectout.c
 	python extractshell.py -o $@ -s $@.b
 	hexdump -C $@.b
 
+injectdyld64: injectdyld.c
+	$(GCC_OSX) -o $@ $^
+	otool -t -v $@
+	python extractshell.py -o $@ -s $@.b
+	hexdump -C $@.b
+
 clean:
-	rm -f *.o shelltest shelltest.b connectout connectout.b connectout64.b connectout64
+	rm -f *.o shelltest shelltest.b connectout connectout.b connectout64.b connectout64 injectdyld64 injectdyld64.b

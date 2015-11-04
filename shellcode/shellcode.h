@@ -7,7 +7,13 @@
 #include <fcntl.h>
 #include <sys/types.h>
 
-#define ARM_BREAKPOINT __asm__("BRK #3");
+#ifdef __arm64
+#define ASM_BREAKPOINT __asm__("BRK #3");
+#elif __x86_64
+#define ASM_BREAKPOINT __asm__("int3");
+#elif
+#error "Unsupported architecture"
+#endif
 
 static uint64_t scc_syscall0(uint64_t num) ;
 static uint64_t scc_syscall1(uint64_t arg1, uint64_t num) ;

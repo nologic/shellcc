@@ -64,8 +64,7 @@ static uint64_t scc_syscall0(uint64_t num) {
 
 	DECL_ARG(_ret, REG_SYSRET);
 
-
-	__asm__(
+	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
 		:"r"(_arg1), "r"(_num));
@@ -80,7 +79,7 @@ static uint64_t scc_syscall1(uint64_t arg1,
 
 	DECL_ARG(_ret, REG_SYSRET);
 
-	__asm__(
+    asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
 		:"r"(_arg1), "r"(_num));
@@ -95,7 +94,7 @@ static uint64_t scc_syscall2(uint64_t arg1, uint64_t arg2, uint64_t num) {
 
 	DECL_ARG(_ret, REG_SYSRET);
 
-	__asm__(
+	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
 		:"r"(_arg1), "r"(_arg2),"r"(_num));
@@ -112,7 +111,7 @@ static uint64_t scc_syscall3(uint64_t arg1, uint64_t arg2, uint64_t arg3,
 
 	DECL_ARG(_ret, REG_SYSRET);
 
-	__asm__(
+	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
 		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_num));
@@ -130,7 +129,7 @@ static uint64_t scc_syscall4(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64
 
 	DECL_ARG(_ret, REG_SYSRET);
 
-	__asm__(
+	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
 		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_num));
@@ -149,7 +148,7 @@ static uint64_t scc_syscall5(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64
 
 	DECL_ARG(_ret, REG_SYSRET);
 
-	__asm__(
+	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
 		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_arg5),"r"(_num));
@@ -169,7 +168,7 @@ static uint64_t scc_syscall6(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64
 
 	DECL_ARG(_ret, REG_SYSRET);
 
-	__asm__(
+	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
 		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_arg5),"r"(_arg6),"r"(_num));
@@ -190,7 +189,7 @@ static uint64_t scc_syscall7(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64
 
 	DECL_ARG(_ret, REG_SYSRET);
 
-	__asm__(
+	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
 		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_arg5),"r"(_arg6),"r"(_arg7),"r"(_num));
@@ -212,7 +211,7 @@ static uint64_t scc_syscall8(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64
 
 	DECL_ARG(_ret, REG_SYSRET);
 
-	__asm__(
+	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
 		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_arg5),"r"(_arg6),"r"(_arg7),"r"(_arg8),"r"(_num));
