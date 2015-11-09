@@ -23,6 +23,8 @@
 #define COPY_ARG7(dest, src)   COPY_ARG(dest, src, "rcx")
 #define COPY_ARG8(dest, src)   COPY_ARG(dest, src, "r11")
 
+#define SCRATCH_REGS "rax", "rdi", "rsi", "rdx", "rcx", "r8", "r9", "r10", "r11"
+
 // .bytes are jnb +3
 #define SYS_CALL_ASM \
 		"syscall;\n"  \
@@ -49,6 +51,8 @@
 #define COPY_ARG7(dest, src)   COPY_ARG(dest, src, "x6")
 #define COPY_ARG8(dest, src)   COPY_ARG(dest, src, "x7")
 
+#define SCRATCH_REGS "x16", "x17"
+
 #define SYS_CALL_ASM \
 		"svc 0x80;\n" \
 		"neg x1, x0;\n" \
@@ -67,7 +71,8 @@ static uint64_t scc_syscall0(uint64_t num) {
 	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
-		:"r"(_arg1), "r"(_num));
+		:"r"(_arg1), "r"(_num)
+		:SCRATCH_REGS);
 
 	return _ret;
 }
@@ -82,7 +87,8 @@ static uint64_t scc_syscall1(uint64_t arg1,
     asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
-		:"r"(_arg1), "r"(_num));
+		:"r"(_arg1), "r"(_num)
+		:SCRATCH_REGS);
 
 	return _ret;
 }
@@ -97,7 +103,8 @@ static uint64_t scc_syscall2(uint64_t arg1, uint64_t arg2, uint64_t num) {
 	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
-		:"r"(_arg1), "r"(_arg2),"r"(_num));
+		:"r"(_arg1), "r"(_arg2),"r"(_num)
+		:SCRATCH_REGS);
 
 	return _ret;
 }
@@ -114,7 +121,8 @@ static uint64_t scc_syscall3(uint64_t arg1, uint64_t arg2, uint64_t arg3,
 	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
-		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_num));
+		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_num)
+		:SCRATCH_REGS);
 
 	return _ret;
 }
@@ -132,7 +140,8 @@ static uint64_t scc_syscall4(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64
 	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
-		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_num));
+		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_num)
+		:SCRATCH_REGS);
 
 	return _ret;
 }
@@ -151,7 +160,8 @@ static uint64_t scc_syscall5(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64
 	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
-		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_arg5),"r"(_num));
+		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_arg5),"r"(_num)
+		:SCRATCH_REGS);
 
 	return _ret;
 }
@@ -171,7 +181,8 @@ static uint64_t scc_syscall6(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64
 	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
-		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_arg5),"r"(_arg6),"r"(_num));
+		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_arg5),"r"(_arg6),"r"(_num)
+		:SCRATCH_REGS);
 
 	return _ret;
 }
@@ -192,7 +203,8 @@ static uint64_t scc_syscall7(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64
 	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
-		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_arg5),"r"(_arg6),"r"(_arg7),"r"(_num));
+		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_arg5),"r"(_arg6),"r"(_arg7),"r"(_num)
+		:SCRATCH_REGS);
 
 	return _ret;
 }
@@ -214,7 +226,8 @@ static uint64_t scc_syscall8(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64
 	asm volatile (
 		SYS_CALL_ASM
 		:"=r"(_ret)
-		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_arg5),"r"(_arg6),"r"(_arg7),"r"(_arg8),"r"(_num));
+		:"r"(_arg1), "r"(_arg2),"r"(_arg3),"r"(_arg4),"r"(_arg5),"r"(_arg6),"r"(_arg7),"r"(_arg8),"r"(_num)
+		:SCRATCH_REGS);
 
 	return _ret;
 }
