@@ -58,6 +58,35 @@
 		"neg x1, x0;\n" \
 		"csel x0, x0, x1, cc;\n" 
 
+#elif __mips
+// set up parameters and calls for MIPS
+
+#define REG_ARG1 "a0"
+#define REG_SYSNUM "v0"
+#define REG_SYSRET "v0"
+#define ARG_TYPE uint32_t
+
+#define DECL_ARG(name, reg)      register ARG_TYPE name asm(reg)
+#define COPY_ARG(dest, src, reg) DECL_ARG(dest, reg) = src
+
+#define COPY_SYSNUM(dest, src) COPY_ARG(dest, src, REG_SYSNUM)
+#define COPY_ARG1(dest, src)   COPY_ARG(dest, src, "a0")
+#define COPY_ARG2(dest, src)   COPY_ARG(dest, src, "a1")
+#define COPY_ARG3(dest, src)   COPY_ARG(dest, src, "a2")
+#define COPY_ARG4(dest, src)   COPY_ARG(dest, src, "a3")
+#define COPY_ARG5(dest, src)   COPY_ARG(dest, src, "a4")
+#define COPY_ARG6(dest, src)   COPY_ARG(dest, src, "a5")
+#define COPY_ARG7(dest, src)   COPY_ARG(dest, src, "a6")
+#define COPY_ARG8(dest, src)   COPY_ARG(dest, src, "a7")
+
+#define SCRATCH_REGS "t0"
+
+#define SYS_CALL_ASM \
+    "syscall;\n" /*\
+    "beqz $a3, 0x8;\n" \
+    "negu $v0, $v0;\n" \
+    "move $v0, $v0;\n"*/
+
 #else
 	#error "Unsupported architecture"
 #endif
