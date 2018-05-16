@@ -1,5 +1,8 @@
 // to be included at the bottom of the shellcode main file.
 
+#define STRINGIZE2(s) #s
+#define STRINGIZE(s) STRINGIZE2(s)
+
 #ifdef __x86_64
 // set up parameters and calls for __x86_64
 
@@ -81,11 +84,12 @@
 
 #define SCRATCH_REGS "t0"
 
+// https://www.linux-mips.org/wiki/Syscall
 #define SYS_CALL_ASM \
-    "syscall;\n" /*\
-    "beqz $a3, 0x8;\n" \
+    "syscall;\n" \
+    "beqz $a3, jsc_" STRINGIZE(__LINE__)  ";\n" \
     "negu $v0, $v0;\n" \
-    "move $v0, $v0;\n"*/
+    "jsc_" STRINGIZE(__LINE__) ": ;\n"
 
 #else
 	#error "Unsupported architecture"
